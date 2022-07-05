@@ -14,6 +14,10 @@ public class EmpleadoApplication {
 	 * Para consultar un findall
 	 * ||
 	 * ---->http://localhost:8080/view/airport
-	 * 
+	 * ---->http://localhost:8080/view/country
+	 *
+	 * Consulta por ID
+	 * ---->http://localhost:8080/view/airport/id
+	 * ---->http://localhost:8080/view/country/id
 	 */
 }

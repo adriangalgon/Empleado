@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface IAirportService {
 
-    List<Airport> listaAirport();
+    public List<Airport> listaAirport();
+
+    public Airport buscarPorId(Long id);
 
 
 }

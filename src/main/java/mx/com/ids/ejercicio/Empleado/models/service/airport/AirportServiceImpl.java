@@ -17,4 +17,11 @@ public class AirportServiceImpl implements IAirportService{
     public List<Airport> listaAirport() {
         return (List<Airport>) airportRepository.findAll();
     }
+
+    @Override
+    public Airport buscarPorId(Long id) {
+        return airportRepository.findById(id).orElse(null);
+    }
+
+
 }
