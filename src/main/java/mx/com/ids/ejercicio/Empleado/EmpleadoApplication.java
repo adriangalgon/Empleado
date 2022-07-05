@@ -10,4 +10,10 @@ public class EmpleadoApplication {
 		SpringApplication.run(EmpleadoApplication.class, args);
 	}
 
+	/**
+	 * Para consultar un findall
+	 * ||
+	 * ---->http://localhost:8080/view/airport
+	 * 
+	 */
 }
