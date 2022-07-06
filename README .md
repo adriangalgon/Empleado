@@ -24,7 +24,7 @@ Se muestras los siguientes enlaces para realizar las consultas para:
     Crear Country
     http://localhost:8080/view/creacountry
     {
-        "code": "23423",
+        "code": 23423,
         "name": "Italia"
     }
 
