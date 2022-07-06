@@ -1,9 +1,8 @@
 package mx.com.ids.ejercicio.Empleado.models.service.languages;
 
-import mx.com.ids.ejercicio.Empleado.models.entity.employee.Employee;
-import mx.com.ids.ejercicio.Empleado.models.entity.languages.Languages;
-
 import java.util.List;
+
+import mx.com.ids.ejercicio.Empleado.models.entity.languages.Languages;
 
 public interface ILanguagesService {
 
