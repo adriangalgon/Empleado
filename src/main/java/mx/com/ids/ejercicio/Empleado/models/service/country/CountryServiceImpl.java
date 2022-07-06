@@ -13,6 +13,10 @@ public class CountryServiceImpl implements ICountryService {
     @Autowired
     CountryRepository countryRepository;
 
+    @Override
+    public Country createCountry(Country country) {
+        return countryRepository.save(country);
+    }
 
     @Override
     public List<Country> listaCountry() {

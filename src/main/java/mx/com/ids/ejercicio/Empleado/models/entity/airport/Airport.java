@@ -1,9 +1,6 @@
 package mx.com.ids.ejercicio.Empleado.models.entity.airport;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -12,6 +9,7 @@ public class Airport  implements Serializable {
 
     @Id
     @Column(name = "id_airport")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_airport;
 
     @Column(name = "name")

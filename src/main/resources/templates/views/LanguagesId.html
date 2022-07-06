@@ -9,7 +9,7 @@
         <h1 th:text="${titulo}"></h1>
     </div>
 
-<!--    <label th:text="${airports}"></label>&ndash;&gt;-->
+<!--    <label th:text="${languages}"></label>&ndash;&gt;-->
 
     <div class="container">
         <table class="table">
@@ -20,9 +20,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="airport:${airports}">
-                    <td th:text="${airport.id_airport}"></td>
-                    <td th:text="${airport.name}"></td>
+                <tr th:each="language:${languages}">
+                    <td th:text="${language.id_languages}"></td>
+                    <td th:text="${language.code}"></td>
+                    <td th:text="${language.name}"></td>
                 </tr>
             </tbody>
         </table>

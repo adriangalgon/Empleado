@@ -14,6 +14,11 @@ public class AirportServiceImpl implements IAirportService{
     private AirportRepository airportRepository;
 
     @Override
+    public Airport createAirport(Airport airport) {
+        return airportRepository.save(airport);
+    }
+
+    @Override
     public List<Airport> listaAirport() {
         return (List<Airport>) airportRepository.findAll();
     }

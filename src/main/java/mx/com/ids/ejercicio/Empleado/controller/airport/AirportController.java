@@ -2,17 +2,19 @@ package mx.com.ids.ejercicio.Empleado.controller.airport;
 
 
 import mx.com.ids.ejercicio.Empleado.models.entity.airport.Airport;
+import mx.com.ids.ejercicio.Empleado.models.entity.employee.Employee;
 import mx.com.ids.ejercicio.Empleado.models.service.airport.IAirportService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+@RestController
 @Controller
 @RequestMapping("/view")
 public class AirportController {
@@ -20,39 +22,22 @@ public class AirportController {
     @Autowired
     private IAirportService iAirportService;
 
-    @GetMapping("/airport")
-    public String listarAirports(Model model){
-        List<Airport> listadoAirport = iAirportService.listaAirport();
-
-        model.addAttribute("titulo", "Lista de Aeropuertos");
-        model.addAttribute("airports", listadoAirport);
-
-        return "/views/Airports";
+    @PostMapping("/creaairport")
+    public ResponseEntity<Airport> createEmployee(@RequestBody Airport airport){
+        return ResponseEntity.ok().body(this.iAirportService.createAirport(airport));
     }
 
-    @GetMapping("/airport/{id}")
-    public String editar(@PathVariable("id") Long idAirport, Model model, RedirectAttributes attribute){
-        Airport airport = null;
-
-        if (idAirport > 0){
-            airport = iAirportService.buscarPorId(idAirport);
-
-            if (airport == null){
-                System.out.println("Error: El ID del aeropuerto no existe!");
-                attribute.addFlashAttribute("error","ATENCION: El ID del aeropuerto no existe!");
-                return "redirect:/view/airport";
-            }
-        } else {
-            System.out.println("Error: Error con el ID del aeropuerto");
-            attribute.addFlashAttribute("error", "ATENCION: Error con el ID del aeropuerto");
-            return "redirect:/view/airport";
+    @GetMapping("/listaairport")
+    public ResponseEntity<?> getAllAirport(){
+        List<Airport> lista = iAirportService.listaAirport();
+        if (lista.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        return ResponseEntity.ok().body(iAirportService.listaAirport());
+    }
 
-        List<Airport> listAirports = iAirportService.listaAirport();
-
-        model.addAttribute("titulo", "Mostrar por ID");
-        model.addAttribute("airports", airport);
-
-        return "/views/AirportsId";
+    @GetMapping("/detalleairport/{id}")
+    public ResponseEntity<Airport> getProductById(@PathVariable long id){
+        return ResponseEntity.ok().body(iAirportService.buscarPorId(id));
     }
 }

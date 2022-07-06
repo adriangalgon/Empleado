@@ -1,10 +1,7 @@
 package mx.com.ids.ejercicio.Empleado.models.entity.country;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -13,10 +10,11 @@ public class Country implements Serializable {
 
     @Id
     @Column(name = "id_country")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_country;
 
-    @Column(name = "idairport")
-    private int idairport;
+//    @Column(name = "idairport")
+//    private int idairport;
 
     @Column(name = "code")
     private String code;
@@ -32,13 +30,13 @@ public class Country implements Serializable {
         this.id_country = id_country;
     }
 
-    public int getIdairport() {
-        return idairport;
-    }
-
-    public void setIdairport(int idairport) {
-        this.idairport = idairport;
-    }
+//    public int getIdairport() {
+//        return idairport;
+//    }
+//
+//    public void setIdairport(int idairport) {
+//        this.idairport = idairport;
+//    }
 
     public String getCode() {
         return code;
@@ -60,7 +58,6 @@ public class Country implements Serializable {
     public String toString() {
         return "Country{" +
                 "id_country=" + id_country +
-                ", idairport=" + idairport +
                 ", code='" + code + '\'' +
                 ", name='" + name + '\'' +
                 '}';

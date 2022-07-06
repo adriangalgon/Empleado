@@ -1,14 +1,13 @@
 package mx.com.ids.ejercicio.Empleado.controller.country;
 
 import mx.com.ids.ejercicio.Empleado.models.entity.country.Country;
+import mx.com.ids.ejercicio.Empleado.models.entity.employee.Employee;
 import mx.com.ids.ejercicio.Empleado.models.service.country.ICountryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,41 +16,24 @@ import java.util.List;
 public class CountryController {
 
     @Autowired
-    ICountryService iCountryService;
+    private ICountryService iCountryService;
 
-    @GetMapping("/country")
-    public String listarCountries(Model model){
-        List<Country> listadoCountry = iCountryService.listaCountry();
-
-        model.addAttribute("titulo", "Lista de Aeropuertos");
-        model.addAttribute("countries", listadoCountry);
-
-        return "/views/Countries";
+    @PostMapping("/creacountry")
+    public ResponseEntity<Country> createEmployee(@RequestBody Country country){
+        return ResponseEntity.ok().body(this.iCountryService.createCountry(country));
     }
 
-    @GetMapping("/country/{id}")
-    public String editar(@PathVariable("id") Long idCountry, Model model, RedirectAttributes attribute){
-        Country country = null;
-
-        if (idCountry > 0){
-            country = iCountryService.buscarPorId(idCountry);
-
-            if (country == null){
-                System.out.println("Error: El ID del país no existe!");
-                attribute.addFlashAttribute("error","ATENCION: El ID del país no existe!");
-                return "redirect:/view/country";
-            }
-        } else {
-            System.out.println("Error: Error con el ID del country");
-            attribute.addFlashAttribute("error", "ATENCION: Error con el ID del country");
-            return "redirect:/view/country";
+    @GetMapping("/listacountry")
+    public ResponseEntity<?> getAllCountry(){
+        List<Country> lista = iCountryService.listaCountry();
+        if (lista.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        return ResponseEntity.ok().body(iCountryService.listaCountry());
+    }
 
-        List<Country> listCountries = iCountryService.listaCountry();
-
-        model.addAttribute("titulo", "Mostrar por ID");
-        model.addAttribute("countries", country);
-
-        return "/views/CountriesId";
+    @GetMapping("/detallecountry/{id}")
+    public ResponseEntity<Country> getCountryById(@PathVariable long id){
+        return ResponseEntity.ok().body(iCountryService.buscarPorId(id));
     }
 }
