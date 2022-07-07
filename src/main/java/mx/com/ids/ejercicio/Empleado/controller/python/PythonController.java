@@ -41,10 +41,10 @@ public class PythonController {
         Employee employee = new Employee((String) JSonObj.get("firstname"), (String) JSonObj.get("surname"));
         Languages languages = new Languages((String) JSonObj.get("name_lang"));
 
-        String w = String.valueOf(this.airportService.createAirport(airport));
-        String x = String.valueOf(this.countryService.createCountry(country));
-        String y = String.valueOf(this.employeeService.createUser(employee));
-        String z = String.valueOf(this.languagesService.createLanguage(languages));
+        String.valueOf(this.airportService.createAirport(airport));
+        String.valueOf(this.countryService.createCountry(country));
+        String.valueOf(this.employeeService.createUser(employee));
+        String.valueOf(this.languagesService.createLanguage(languages));
 
         return HttpStatus.OK;
     }
