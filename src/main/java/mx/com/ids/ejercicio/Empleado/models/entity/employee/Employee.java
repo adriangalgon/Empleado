@@ -18,6 +18,14 @@ public class Employee implements Serializable {
     @Column(name = "firstname")
     private String firstname;
 
+    public Employee() {
+    }
+
+    public Employee(String surname, String firstname) {
+        this.surname = surname;
+        this.firstname = firstname;
+    }
+
     public Long getId_employee() {
         return id_employee;
     }

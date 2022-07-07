@@ -17,10 +17,14 @@ public class Country implements Serializable {
 //    private int idairport;
 
     @Column(name = "code")
-    private String code;
+    private int code;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "name_coun")
+    private String name_coun;
+
+    public Country(String name_coun) {
+        this.name_coun = name_coun;
+    }
 
     public Long getId_country() {
         return id_country;
@@ -30,36 +34,28 @@ public class Country implements Serializable {
         this.id_country = id_country;
     }
 
-//    public int getIdairport() {
-//        return idairport;
-//    }
-//
-//    public void setIdairport(int idairport) {
-//        this.idairport = idairport;
-//    }
-
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
-    public String getName() {
-        return name;
+    public String getName_coun() {
+        return name_coun;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName_coun(String name_coun) {
+        this.name_coun = name_coun;
     }
 
     @Override
     public String toString() {
         return "Country{" +
                 "id_country=" + id_country +
-                ", code='" + code + '\'' +
-                ", name='" + name + '\'' +
+                ", code=" + code +
+                ", name_coun='" + name_coun + '\'' +
                 '}';
     }
 }

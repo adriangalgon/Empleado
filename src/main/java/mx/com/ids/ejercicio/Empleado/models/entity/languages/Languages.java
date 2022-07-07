@@ -15,15 +15,14 @@ public class Languages implements Serializable {
     @Column(name = "code")
     private int code;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "name_lang")
+    private String name_lang;
 
-    public Long getId_languages() {
-        return id_languages;
+    public Languages() {
     }
 
-    public void setId_languages(Long id_languages) {
-        this.id_languages = id_languages;
+    public Languages(String name_lang) {
+        this.name_lang = name_lang;
     }
 
     public int getCode() {
@@ -34,12 +33,12 @@ public class Languages implements Serializable {
         this.code = code;
     }
 
-    public String getName() {
-        return name;
+    public String getName_lang() {
+        return name_lang;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName_lang(String name_lang) {
+        this.name_lang = name_lang;
     }
 
     @Override
@@ -47,7 +46,7 @@ public class Languages implements Serializable {
         return "Languages{" +
                 "id_languages=" + id_languages +
                 ", code=" + code +
-                ", name='" + name + '\'' +
+                ", name_lang='" + name_lang + '\'' +
                 '}';
     }
 }
